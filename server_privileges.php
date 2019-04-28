@@ -14,6 +14,7 @@ use PhpMyAdmin\Server\Common;
 use PhpMyAdmin\Server\Privileges;
 use PhpMyAdmin\Server\Users;
 use PhpMyAdmin\Template;
+use PhpMyAdmin\Url;
 
 /**
  * include common file
@@ -344,8 +345,8 @@ if ($response->isAjax()
  */
 if (isset($_GET['viewing_mode']) && $_GET['viewing_mode'] == 'db') {
     $GLOBALS['db'] = $_REQUEST['db'] = $_GET['checkprivsdb'];
-
-    $url_query .= '&amp;goto=db_operations.php';
+    $sep = Url::getArgSeparator('html');
+    $url_query .= $sep . 'goto=db_operations.php';
 
     // Gets the database structure
     $sub_part = '_structure';

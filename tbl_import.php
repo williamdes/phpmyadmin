@@ -8,6 +8,7 @@
 use PhpMyAdmin\Config\PageSettings;
 use PhpMyAdmin\Display\Import;
 use PhpMyAdmin\Response;
+use PhpMyAdmin\Url;
 
 /**
  *
@@ -25,7 +26,8 @@ $scripts->addFile('import.js');
  * Gets tables information and displays top links
  */
 require_once 'libraries/tbl_common.inc.php';
-$url_query .= '&amp;goto=tbl_import.php&amp;back=tbl_import.php';
+$sep = Url::getArgSeparator('html');
+$url_query .= $sep . 'goto=tbl_import.php' . $sep . 'back=tbl_import.php';
 
 $response->addHTML(
     Import::get(

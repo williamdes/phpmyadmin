@@ -472,6 +472,7 @@ class Export
     public static function getHtmlForDisplayedExportHeader($export_type, $db, $table)
     {
         $html = '<div>';
+        $sep = Url::getArgSeparator('html');
 
         /**
          * Displays a back button with all the $_POST data in the URL
@@ -503,10 +504,10 @@ class Export
 
         foreach ($_POST as $name => $value) {
             if (!is_array($value)) {
-                $back_button .= '&amp;' . urlencode($name) . '=' . urlencode($value);
+                $back_button .= $sep . urlencode($name) . '=' . urlencode($value);
             }
         }
-        $back_button .= '&amp;repopulate=1">' . __('Back') . '</a> ]</p>';
+        $back_button .= $sep . 'repopulate=1">' . __('Back') . '</a> ]</p>';
         $html .= '<br />';
         $html .= $back_button;
         $refreshButton = '<form id="export_refresh_form" method="POST" action="export.php" class="disableAjax">';

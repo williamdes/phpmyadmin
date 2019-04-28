@@ -9,6 +9,7 @@ namespace PhpMyAdmin\Navigation\Nodes;
 
 use PhpMyAdmin\Navigation\NodeFactory;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Represents a container for events nodes in the navigation tree
@@ -24,11 +25,12 @@ class NodeEventContainer extends NodeDatabaseChildContainer
     {
         parent::__construct(__('Events'), Node::CONTAINER);
         $this->icon = Util::getImage('b_events', '');
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text' => 'db_events.php?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s',
+                . $sep . 'db=%1$s',
             'icon' => 'db_events.php?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s',
+                . $sep . 'db=%1$s',
         );
         $this->real_name = 'events';
 
@@ -40,9 +42,9 @@ class NodeEventContainer extends NodeDatabaseChildContainer
         $new->icon = Util::getImage('b_event_add', '');
         $new->links = array(
             'text' => 'db_events.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&add_item=1',
+                . $sep . 'db=%2$s&add_item=1',
             'icon' => 'db_events.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&add_item=1',
+                . $sep . 'db=%2$s&add_item=1',
         );
         $new->classes = 'new_event italics';
         $this->addChild($new);

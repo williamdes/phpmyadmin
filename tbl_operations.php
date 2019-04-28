@@ -13,6 +13,7 @@ use PhpMyAdmin\Relation;
 use PhpMyAdmin\Response;
 use PhpMyAdmin\Table;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  *
@@ -47,7 +48,8 @@ $scripts->addFile('tbl_operations.js');
  * Runs common work
  */
 require 'libraries/tbl_common.inc.php';
-$url_query .= '&amp;goto=tbl_operations.php&amp;back=tbl_operations.php';
+$sep = Url::getArgSeparator('html');
+$url_query .= $sep . 'goto=tbl_operations.php' . $sep . 'back=tbl_operations.php';
 $url_params['goto'] = $url_params['back'] = 'tbl_operations.php';
 
 /**

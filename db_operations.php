@@ -21,6 +21,7 @@ use PhpMyAdmin\Relation;
 use PhpMyAdmin\RelationCleanup;
 use PhpMyAdmin\Response;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * requirements
@@ -223,7 +224,7 @@ if (isset($_POST['comment'])) {
 }
 
 require 'libraries/db_common.inc.php';
-$url_query .= '&amp;goto=db_operations.php';
+$url_query .= Url::getArgSeparator('html') . 'goto=db_operations.php';
 
 // Gets the database structure
 $sub_part = '_structure';

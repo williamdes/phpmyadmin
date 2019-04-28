@@ -9,6 +9,7 @@
 namespace PhpMyAdmin\Plugins\Transformations\Abs;
 
 use PhpMyAdmin\Plugins\TransformationsPlugin;
+use PhpMyAdmin\Url;
 
 if (!defined('PHPMYADMIN')) {
     exit;
@@ -47,13 +48,14 @@ abstract class InlineTransformationsPlugin extends TransformationsPlugin
     {
         $cfg = $GLOBALS['cfg'];
         $options = $this->getOptions($options, $cfg['DefaultTransformations']['Inline']);
+        $sep = Url::getArgSeparator('html');
 
         if (PMA_IS_GD2) {
             return '<a href="transformation_wrapper.php'
                 . $options['wrapper_link']
                 . '" rel="noopener noreferrer" target="_blank"><img src="transformation_wrapper.php'
-                . $options['wrapper_link'] . '&amp;resize=jpeg&amp;newWidth='
-                . intval($options[0]) . '&amp;newHeight='
+                . $options['wrapper_link'] . $sep . 'resize=jpeg' . $sep . 'newWidth='
+                . intval($options[0]) . $sep . 'newHeight='
                 . intval($options[1])
                 . '" alt="[' . htmlspecialchars($buffer) . ']" border="0" /></a>';
         } else {

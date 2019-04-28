@@ -45,12 +45,13 @@ class NodeDatabase extends Node
             $GLOBALS['cfg']['DefaultTabDatabase'],
             'database'
         );
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text'  => $script_name
                 . '?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s',
+                . $sep . 'db=%1$s',
             'icon'  => 'db_operations.php?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s&amp;',
+                . $sep . 'db=%1$s' . $sep,
             'title' => __('Structure'),
         );
         $this->classes = 'database';

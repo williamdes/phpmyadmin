@@ -1993,11 +1993,12 @@ class Relation
     public function getHtmlFixPmaTables($allTables, $createDb = false)
     {
         $retval = '';
+        $sep = Url::getArgSeparator('html');
 
         $url_query = Url::getCommon(array('db' => $GLOBALS['db']), '');
         if ($allTables) {
             if ($createDb) {
-                $url_query .= '&amp;goto=db_operations.php&amp;create_pmadb=1';
+                $url_query .= $sep . 'goto=db_operations.php' . $sep . 'create_pmadb=1';
                 $message = Message::notice(
                     __(
                         '%sCreate%s a database named \'phpmyadmin\' and setup '
@@ -2005,7 +2006,7 @@ class Relation
                     )
                 );
             } else {
-                $url_query .= '&amp;goto=db_operations.php&amp;fixall_pmadb=1';
+                $url_query .= $sep . 'goto=db_operations.php' . $sep . 'fixall_pmadb=1';
                 $message = Message::notice(
                     __(
                         '%sCreate%s the phpMyAdmin configuration storage in the '
@@ -2014,7 +2015,7 @@ class Relation
                 );
             }
         } else {
-            $url_query .= '&amp;goto=db_operations.php&amp;fix_pmadb=1';
+            $url_query .= $sep . 'goto=db_operations.php' . $sep . 'fix_pmadb=1';
             $message = Message::notice(
                 __('%sCreate%s missing phpMyAdmin configuration storage tables.')
             );

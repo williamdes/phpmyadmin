@@ -13,6 +13,7 @@ use PhpMyAdmin\Response;
 use PhpMyAdmin\Sql;
 use PhpMyAdmin\Template;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 if (! defined('PHPMYADMIN')) {
     exit;
@@ -167,7 +168,8 @@ if (!empty($submit_mult) && !empty($what)) {
 
     if (strlen($table) > 0) {
         include './libraries/tbl_common.inc.php';
-        $url_query .= '&amp;goto=tbl_sql.php&amp;back=tbl_sql.php';
+        $sep = Url::getArgSeparator('html');
+        $url_query .= $sep . 'goto=tbl_sql.php' . $sep . 'back=tbl_sql.php';
     } elseif (strlen($db) > 0) {
         include './libraries/db_common.inc.php';
 

@@ -192,6 +192,7 @@ class RteList
     public static function getRoutineRow(array $routine, $rowclass = '')
     {
         global $url_query, $db, $titles;
+        $sep = Url::getArgSeparator('html');
 
         $sql_drop = sprintf(
             'DROP %s IF EXISTS %s',
@@ -236,10 +237,10 @@ class RteList
             $retval .= '                <a class="ajax edit_anchor"'
                                              . ' href="db_routines.php'
                                              . $url_query
-                                             . '&amp;edit_item=1'
-                                             . '&amp;item_name='
+                                             . $sep . 'edit_item=1'
+                                             . $sep . 'item_name='
                                              . urlencode($routine['name'])
-                                             . '&amp;' . $type_link
+                                             . $sep . $type_link
                                              . '">' . $titles['Edit'] . "</a>\n";
         } else {
             $retval .= "                {$titles['NoEdit']}\n";
@@ -282,14 +283,14 @@ class RteList
                     $execute_action = 'execute_dialog';
                     break;
                 }
-                $query_part = $execute_action . '=1&amp;item_name='
-                    . urlencode($routine['name']) . '&amp;' . $type_link;
+                $query_part = $execute_action . '=1' . $sep . 'item_name='
+                    . urlencode($routine['name']) . $sep . $type_link;
                 $retval .= '                <a class="ajax exec_anchor"'
                                                  . ' href="db_routines.php'
                                                  . $url_query
                                                  . ($execute_action == 'execute_routine'
                                                      ? '" data-post="' . $query_part
-                                                     : '&amp;' . $query_part)
+                                                     : $sep . $query_part)
                                                  . '">' . $titles['Execute'] . "</a>\n";
             } else {
                 $retval .= "                {$titles['NoExecute']}\n";
@@ -305,10 +306,10 @@ class RteList
             $retval .= '                <a class="ajax export_anchor"'
                                              . ' href="db_routines.php'
                                              . $url_query
-                                             . '&amp;export_item=1'
-                                             . '&amp;item_name='
+                                             . $sep . 'export_item=1'
+                                             . $sep . 'item_name='
                                              . urlencode($routine['name'])
-                                             . '&amp;' . $type_link
+                                             . $sep . $type_link
                                              . '">' . $titles['Export'] . "</a>\n";
         } else {
             $retval .= "                {$titles['NoExport']}\n";
@@ -316,7 +317,7 @@ class RteList
         $retval .= "            </td>\n";
         $retval .= "            <td>\n";
         $retval .= Util::linkOrButton(
-            'sql.php' . $url_query . '&amp;sql_query=' . urlencode($sql_drop) . '&amp;goto=db_routines.php' . urlencode("?db={$db}"),
+            'sql.php' . $url_query . $sep .'sql_query=' . urlencode($sql_drop) . $sep . 'goto=db_routines.php' . urlencode("?db={$db}"),
             $titles['Drop'],
             ['class' => 'ajax drop_anchor']
         );
@@ -344,6 +345,7 @@ class RteList
     public static function getTriggerRow(array $trigger, $rowclass = '')
     {
         global $url_query, $db, $table, $titles;
+        $sep = Url::getArgSeparator('html');
 
         $retval  = "        <tr class='$rowclass'>\n";
         $retval .= "            <td>\n";
@@ -361,7 +363,7 @@ class RteList
         if (empty($table)) {
             $retval .= "            <td>\n";
             $retval .= "<a href='db_triggers.php{$url_query}"
-                . "&amp;table=" . urlencode($trigger['table']) . "'>"
+                . $sep . "table=" . urlencode($trigger['table']) . "'>"
                 . htmlspecialchars($trigger['table']) . "</a>";
             $retval .= "            </td>\n";
         }
@@ -370,8 +372,8 @@ class RteList
             $retval .= '                <a class="ajax edit_anchor"'
                                              . ' href="db_triggers.php'
                                              . $url_query
-                                             . '&amp;edit_item=1'
-                                             . '&amp;item_name='
+                                             . $sep . 'edit_item=1'
+                                             . $sep . 'item_name='
                                              . urlencode($trigger['name'])
                                              . '">' . $titles['Edit'] . "</a>\n";
         } else {
@@ -382,15 +384,15 @@ class RteList
         $retval .= '                    <a class="ajax export_anchor"'
                                              . ' href="db_triggers.php'
                                              . $url_query
-                                             . '&amp;export_item=1'
-                                             . '&amp;item_name='
+                                             . $sep . 'export_item=1'
+                                             . $sep . 'item_name='
                                              . urlencode($trigger['name'])
                                              . '">' . $titles['Export'] . "</a>\n";
         $retval .= "            </td>\n";
         $retval .= "            <td>\n";
         if (Util::currentUserHasPrivilege('TRIGGER', $db)) {
             $retval .= Util::linkOrButton(
-                'sql.php' . $url_query . '&amp;sql_query=' . urlencode($trigger['drop']) . '&amp;goto=db_triggers.php' . urlencode("?db={$db}"),
+                'sql.php' . $url_query . $sep .'sql_query=' . urlencode($trigger['drop']) . $sep . 'goto=db_triggers.php' . urlencode("?db={$db}"),
                 $titles['Drop'],
                 ['class' => 'ajax drop_anchor']
             );
@@ -420,6 +422,7 @@ class RteList
     public static function getEventRow(array $event, $rowclass = '')
     {
         global $url_query, $db, $titles;
+        $sep = Url::getArgSeparator('html');
 
         $sql_drop = sprintf(
             'DROP EVENT IF EXISTS %s',
@@ -448,8 +451,8 @@ class RteList
             $retval .= '                <a class="ajax edit_anchor"'
                                              . ' href="db_events.php'
                                              . $url_query
-                                             . '&amp;edit_item=1'
-                                             . '&amp;item_name='
+                                             . $sep . 'edit_item=1'
+                                             . $sep . 'item_name='
                                              . urlencode($event['name'])
                                              . '">' . $titles['Edit'] . "</a>\n";
         } else {
@@ -460,15 +463,15 @@ class RteList
         $retval .= '                <a class="ajax export_anchor"'
                                          . ' href="db_events.php'
                                          . $url_query
-                                         . '&amp;export_item=1'
-                                         . '&amp;item_name='
+                                         . $sep . 'export_item=1'
+                                         . $sep . 'item_name='
                                          . urlencode($event['name'])
                                          . '">' . $titles['Export'] . "</a>\n";
         $retval .= "            </td>\n";
         $retval .= "            <td>\n";
         if (Util::currentUserHasPrivilege('EVENT', $db)) {
             $retval .= Util::linkOrButton(
-                'sql.php' . $url_query . '&amp;sql_query=' . urlencode($sql_drop) . '&amp;goto=db_events.php' . urlencode("?db={$db}"),
+                'sql.php' . $url_query . $sep . 'sql_query=' . urlencode($sql_drop) . $sep . 'goto=db_events.php' . urlencode("?db={$db}"),
                 $titles['Drop'],
                 ['class' => 'ajax drop_anchor']
             );

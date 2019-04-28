@@ -9,6 +9,7 @@ namespace PhpMyAdmin\Navigation\Nodes;
 
 use PhpMyAdmin\Navigation\NodeFactory;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Represents a container for trigger nodes in the navigation tree
@@ -24,11 +25,12 @@ class NodeTriggerContainer extends Node
     {
         parent::__construct(__('Triggers'), Node::CONTAINER);
         $this->icon = Util::getImage('b_triggers');
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text' => 'db_triggers.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&amp;table=%1$s',
+                . $sep . 'db=%2$s' . $sep . 'table=%1$s',
             'icon' => 'db_triggers.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&amp;table=%1$s',
+                . $sep . 'db=%2$s' . $sep . 'table=%1$s',
         );
         $this->real_name = 'triggers';
 
@@ -40,9 +42,9 @@ class NodeTriggerContainer extends Node
         $new->icon = Util::getImage('b_trigger_add', '');
         $new->links = array(
             'text' => 'db_triggers.php?server=' . $GLOBALS['server']
-                . '&amp;db=%3$s&amp;add_item=1',
+                . $sep . 'db=%3$s' . $sep . 'add_item=1',
             'icon' => 'db_triggers.php?server=' . $GLOBALS['server']
-                . '&amp;db=%3$s&amp;add_item=1',
+                . $sep . 'db=%3$s' . $sep . 'add_item=1',
         );
         $new->classes = 'new_trigger italics';
         $this->addChild($new);

@@ -9,6 +9,7 @@
 namespace PhpMyAdmin\Plugins\Transformations\Abs;
 
 use PhpMyAdmin\Plugins\TransformationsPlugin;
+use PhpMyAdmin\Url;
 
 /**
  * Provides common methods for all of the download transformations plugins.
@@ -64,10 +65,10 @@ abstract class DownloadTransformationsPlugin extends TransformationsPlugin
                 $cn = 'binary_file.dat';
             }
         }
-
+        $sep = Url::getArgSeparator('html');
         return sprintf(
-            '<a href="transformation_wrapper.php%s&amp;ct=application'
-            . '/octet-stream&amp;cn=%s" title="%s" class="disableAjax">%s</a>',
+            '<a href="transformation_wrapper.php%s' . $sep . 'ct=application'
+            . '/octet-stream' . $sep . 'cn=%s" title="%s" class="disableAjax">%s</a>',
             $options['wrapper_link'],
             htmlspecialchars(urlencode($cn)),
             htmlspecialchars($cn),

@@ -12,6 +12,7 @@ use PhpMyAdmin\Response;
 use PhpMyAdmin\Tracker;
 use PhpMyAdmin\Tracking;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Run common work
@@ -29,7 +30,7 @@ $scripts->addFile('db_tracking.js');
  * If we are not in an Ajax request, then do the common work and show the links etc.
  */
 require 'libraries/db_common.inc.php';
-$url_query .= '&amp;goto=tbl_tracking.php&amp;back=db_tracking.php';
+$url_query .= Url::getArgSeparator('html') . 'goto=tbl_tracking.php' . Url::getArgSeparator('html') . 'back=db_tracking.php';
 $url_params['goto'] = 'tbl_tracking.php';
 $url_params['back'] = 'db_tracking.php';
 

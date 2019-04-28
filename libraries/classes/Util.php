@@ -651,10 +651,11 @@ class Util
             $response->addJSON('message', $error_msg);
             exit;
         }
+        $sep = Url::getArgSeparator('html');
 
         if (!empty($back_url)) {
             if (mb_strstr($back_url, '?')) {
-                $back_url .= '&amp;no_history=true';
+                $back_url .= $sep . 'no_history=true';
             } else {
                 $back_url .= '?no_history=true';
             }
@@ -2600,8 +2601,9 @@ class Util
      */
     public static function toggleButton($action, $select_name, array $options, $callback)
     {
+        $sep = Url::getArgSeparator('html');
         // Do the logic first
-        $link = "$action&amp;" . urlencode($select_name) . "=";
+        $link = $action . $sep . urlencode($select_name) . "=";
         $link_on = $link . urlencode($options[1]['value']);
         $link_off = $link . urlencode($options[0]['value']);
 

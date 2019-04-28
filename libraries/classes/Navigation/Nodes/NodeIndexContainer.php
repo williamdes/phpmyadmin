@@ -9,6 +9,7 @@ namespace PhpMyAdmin\Navigation\Nodes;
 
 use PhpMyAdmin\Navigation\NodeFactory;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Represents a container for index nodes in the navigation tree
@@ -24,11 +25,12 @@ class NodeIndexContainer extends Node
     {
         parent::__construct(__('Indexes'), Node::CONTAINER);
         $this->icon = Util::getImage('b_index', __('Indexes'));
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text' => 'tbl_structure.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&amp;table=%1$s',
+                . $sep . 'db=%2$s' . $sep . 'table=%1$s',
             'icon' => 'tbl_structure.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&amp;table=%1$s',
+                . $sep . 'db=%2$s' . $sep . 'table=%1$s',
         );
         $this->real_name = 'indexes';
 
@@ -41,11 +43,11 @@ class NodeIndexContainer extends Node
         $new->icon = Util::getImage('b_index_add', $new_label);
         $new->links = array(
             'text' => 'tbl_indexes.php?server=' . $GLOBALS['server']
-                . '&amp;create_index=1&amp;added_fields=2'
-                . '&amp;db=%3$s&amp;table=%2$s',
+                . $sep . 'create_index=1' . $sep . 'added_fields=2'
+                . $sep . 'db=%3$s' . $sep . 'table=%2$s',
             'icon' => 'tbl_indexes.php?server=' . $GLOBALS['server']
-                . '&amp;create_index=1&amp;added_fields=2'
-                . '&amp;db=%3$s&amp;table=%2$s',
+                . $sep . 'create_index=1' . $sep . 'added_fields=2'
+                . $sep . 'db=%3$s' . $sep . 'table=%2$s',
         );
         $new->classes = 'new_index italics';
         $this->addChild($new);

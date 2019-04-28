@@ -8,6 +8,7 @@
 namespace PhpMyAdmin\Navigation\Nodes;
 
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Represents a columns node in the navigation tree
@@ -49,24 +50,25 @@ class NodeTable extends NodeDatabaseChild
             $GLOBALS['cfg']['DefaultTabTable'],
             'table'
         );
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text'  => $script_name
                 . '?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&amp;table=%1$s'
-                . '&amp;pos=0',
+                . $sep . 'db=%2$s' . $sep . 'table=%1$s'
+                . $sep . 'pos=0',
             'icon'  => array(
                 Util::getScriptNameForOption(
                     $GLOBALS['cfg']['NavigationTreeDefaultTabTable'],
                     'table'
                 )
                 . '?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&amp;table=%1$s',
+                . $sep . 'db=%2$s' . $sep . 'table=%1$s',
                 Util::getScriptNameForOption(
                     $GLOBALS['cfg']['NavigationTreeDefaultTabTable2'],
                     'table'
                 )
                 . '?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&amp;table=%1$s',
+                . $sep . 'db=%2$s' . $sep . 'table=%1$s',
             ),
             'title' => $this->title,
         );

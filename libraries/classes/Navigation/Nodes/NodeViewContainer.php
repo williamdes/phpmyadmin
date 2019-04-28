@@ -9,6 +9,7 @@ namespace PhpMyAdmin\Navigation\Nodes;
 
 use PhpMyAdmin\Navigation\NodeFactory;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Represents a container for view nodes in the navigation tree
@@ -24,11 +25,12 @@ class NodeViewContainer extends NodeDatabaseChildContainer
     {
         parent::__construct(__('Views'), Node::CONTAINER);
         $this->icon = Util::getImage('b_views', __('Views'));
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text' => 'db_structure.php?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s&amp;tbl_type=view',
+                . $sep . 'db=%1$s' . $sep . 'tbl_type=view',
             'icon' => 'db_structure.php?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s&amp;tbl_type=view',
+                . $sep . 'db=%1$s' . $sep . 'tbl_type=view',
         );
         $this->classes = 'viewContainer subContainer';
         $this->real_name = 'views';
@@ -42,9 +44,9 @@ class NodeViewContainer extends NodeDatabaseChildContainer
         $new->icon = Util::getImage('b_view_add', $new_label);
         $new->links = array(
             'text' => 'view_create.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s',
+                . $sep . 'db=%2$s',
             'icon' => 'view_create.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s',
+                . $sep . 'db=%2$s',
         );
         $new->classes = 'new_view italics';
         $this->addChild($new);

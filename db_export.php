@@ -11,6 +11,7 @@ use PhpMyAdmin\Export;
 use PhpMyAdmin\Message;
 use PhpMyAdmin\Response;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Gets some core libraries
@@ -28,7 +29,7 @@ $scripts->addFile('export.js');
 // db_export.php, in which case we don't obey $cfg['MaxTableList']
 $sub_part  = '_export';
 require_once 'libraries/db_common.inc.php';
-$url_query .= '&amp;goto=db_export.php';
+$url_query .= Url::getArgSeparator('html') . 'goto=db_export.php';
 
 list(
     $tables,

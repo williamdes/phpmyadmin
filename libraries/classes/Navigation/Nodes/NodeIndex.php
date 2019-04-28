@@ -8,6 +8,7 @@
 namespace PhpMyAdmin\Navigation\Nodes;
 
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Represents a index node in the navigation tree
@@ -28,11 +29,12 @@ class NodeIndex extends Node
     {
         parent::__construct($name, $type, $is_group);
         $this->icon = Util::getImage('b_index', __('Index'));
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text' => 'tbl_indexes.php?server=' . $GLOBALS['server']
-                . '&amp;db=%3$s&amp;table=%2$s&amp;index=%1$s',
+                . $sep . 'db=%3$s' . $sep . 'table=%2$s' . $sep . 'index=%1$s',
             'icon' => 'tbl_indexes.php?server=' . $GLOBALS['server']
-                . '&amp;db=%3$s&amp;table=%2$s&amp;index=%1$s',
+                . $sep . 'db=%3$s' . $sep . 'table=%2$s' . $sep . 'index=%1$s',
         );
         $this->classes = 'index';
     }

@@ -9,6 +9,7 @@ namespace PhpMyAdmin\Navigation\Nodes;
 
 use PhpMyAdmin\Navigation\NodeFactory;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Represents a container for functions nodes in the navigation tree
@@ -24,11 +25,12 @@ class NodeFunctionContainer extends NodeDatabaseChildContainer
     {
         parent::__construct(__('Functions'), Node::CONTAINER);
         $this->icon = Util::getImage('b_routines', __('Functions'));
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text' => 'db_routines.php?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s&amp;type=FUNCTION',
+                . $sep . 'db=%1$s' . $sep . 'type=FUNCTION',
             'icon' => 'db_routines.php?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s&amp;type=FUNCTION',
+                . $sep . 'db=%1$s' . $sep . 'type=FUNCTION',
         );
         $this->real_name = 'functions';
 
@@ -41,9 +43,9 @@ class NodeFunctionContainer extends NodeDatabaseChildContainer
         $new->icon = Util::getImage('b_routine_add', $new_label);
         $new->links = array(
             'text' => 'db_routines.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&add_item=1&amp;item_type=FUNCTION',
+                . $sep . 'db=%2$s&add_item=1' . $sep . 'item_type=FUNCTION',
             'icon' => 'db_routines.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s&add_item=1&amp;item_type=FUNCTION',
+                . $sep . 'db=%2$s&add_item=1' . $sep . 'item_type=FUNCTION',
         );
         $new->classes = 'new_function italics';
         $this->addChild($new);

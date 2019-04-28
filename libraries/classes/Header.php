@@ -674,6 +674,7 @@ class Header
         $theme_id   = $GLOBALS['PMA_Config']->getThemeUniqueValue();
         $theme_path = $GLOBALS['pmaThemePath'];
         $v          = self::getVersionParameter();
+        $sep        = Url::getArgSeparator('html');
 
         if ($this->_isPrintView) {
             $retval .= '<link rel="stylesheet" type="text/css" href="'
@@ -692,7 +693,7 @@ class Header
             $retval .= '<link rel="stylesheet" type="text/css" href="'
                 . $basedir . 'phpmyadmin.css.php?'
                 . 'nocache=' . $theme_id . $GLOBALS['text_dir']
-                . (isset($GLOBALS['server']) ? '&amp;server=' . $GLOBALS['server'] : '')
+                . (isset($GLOBALS['server']) ? $sep . 'server=' . $GLOBALS['server'] : '')
                 . '" />';
             // load Print view's CSS last, so that it overrides all other CSS while
             // 'printing'

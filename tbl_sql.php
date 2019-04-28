@@ -8,6 +8,7 @@
 use PhpMyAdmin\Config\PageSettings;
 use PhpMyAdmin\Response;
 use PhpMyAdmin\SqlQueryForm;
+use PhpMyAdmin\Url;
 
 /**
  *
@@ -27,7 +28,8 @@ $scripts->addFile('vendor/jquery/jquery.uitablefilter.js');
 $scripts->addFile('sql.js');
 
 require 'libraries/tbl_common.inc.php';
-$url_query .= '&amp;goto=tbl_sql.php&amp;back=tbl_sql.php';
+$sep = Url::getArgSeparator('html');
+$url_query .= $sep . 'goto=tbl_sql.php' . $sep . 'back=tbl_sql.php';
 
 $err_url   = 'tbl_sql.php' . $err_url;
 // After a syntax error, we return to this script

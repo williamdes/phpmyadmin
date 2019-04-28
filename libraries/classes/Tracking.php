@@ -1260,9 +1260,10 @@ class Tracking
                 'selected' => ($state == 'active')
             )
         );
-        $link = 'tbl_tracking.php' . $urlQuery . '&amp;table='
+        $sep = Url::getArgSeparator('html');
+        $link = 'tbl_tracking.php' . $urlQuery . $sep . 'table='
             . htmlspecialchars($versionData['table_name'])
-            . '&amp;version=' . $versionData['version'];
+            . $sep . 'version=' . $versionData['version'];
 
         return Util::toggleButton(
             $link,

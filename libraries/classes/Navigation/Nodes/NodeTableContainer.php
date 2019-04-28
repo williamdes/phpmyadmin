@@ -9,6 +9,7 @@ namespace PhpMyAdmin\Navigation\Nodes;
 
 use PhpMyAdmin\Navigation\NodeFactory;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Represents a container for table nodes in the navigation tree
@@ -24,11 +25,12 @@ class NodeTableContainer extends NodeDatabaseChildContainer
     {
         parent::__construct(__('Tables'), Node::CONTAINER);
         $this->icon = Util::getImage('b_browse', __('Tables'));
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text' => 'db_structure.php?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s&amp;tbl_type=table',
+                . $sep . 'db=%1$s' . $sep . 'tbl_type=table',
             'icon' => 'db_structure.php?server=' . $GLOBALS['server']
-                . '&amp;db=%1$s&amp;tbl_type=table',
+                . $sep . 'db=%1$s' . $sep . 'tbl_type=table',
         );
         $this->real_name = 'tables';
         $this->classes = 'tableContainer subContainer';
@@ -42,9 +44,9 @@ class NodeTableContainer extends NodeDatabaseChildContainer
         $new->icon = Util::getImage('b_table_add', $new_label);
         $new->links = array(
             'text' => 'tbl_create.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s',
+                . $sep . 'db=%2$s',
             'icon' => 'tbl_create.php?server=' . $GLOBALS['server']
-                . '&amp;db=%2$s',
+                . $sep . 'db=%2$s',
         );
         $new->classes = 'new_table italics';
         $this->addChild($new);

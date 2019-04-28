@@ -834,13 +834,14 @@ EOT;
             }
             exit;
         } else {
+            $sep = Url::getArgSeparator('html');
             // go back to sql.php to redisplay query; do not use &amp; in this case:
             /**
              * @todo In which scenario does this happen?
              */
             Core::sendHeaderLocation(
                 './' . $goto
-                . '&label=' . $_POST['bkm_fields']['bkm_label']
+                . $sep . 'label=' . $_POST['bkm_fields']['bkm_label']
             );
         }
     }

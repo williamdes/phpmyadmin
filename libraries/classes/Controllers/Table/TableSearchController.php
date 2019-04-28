@@ -13,6 +13,7 @@ use PhpMyAdmin\Relation;
 use PhpMyAdmin\Sql;
 use PhpMyAdmin\Template;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Class TableSearchController
@@ -493,7 +494,8 @@ class TableSearchController extends TableController
      */
     public function displaySelectionFormAction($dataLabel = null)
     {
-        $this->url_query .= '&amp;goto=tbl_select.php&amp;back=tbl_select.php';
+        $sep = Url::getArgSeparator('html');
+        $this->url_query .= $sep . 'goto=tbl_select.php' . $sep . 'back=tbl_select.php';
         if (! isset($goto)) {
             $goto = Util::getScriptNameForOption(
                 $GLOBALS['cfg']['DefaultTabTable'], 'table'

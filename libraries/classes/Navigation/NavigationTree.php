@@ -778,7 +778,7 @@ class NavigationTree
                 if ($node instanceof NodeTableContainer
                     || $node instanceof NodeViewContainer
                 ) {
-                    $tblGroup = '&amp;tbl_group=' . urlencode($key);
+                    $tblGroup = Url::getArgSeparator('html') . 'tbl_group=' . urlencode($key);
                     $groups[$key]->links = array(
                         'text' => $node->links['text'] . $tblGroup,
                         'icon' => $node->links['icon'] . $tblGroup,

@@ -9,6 +9,7 @@ use PhpMyAdmin\Message;
 use PhpMyAdmin\Tracker;
 use PhpMyAdmin\Tracking;
 use PhpMyAdmin\Response;
+use PhpMyAdmin\Url;
 
 require_once './libraries/common.inc.php';
 
@@ -37,8 +38,8 @@ if (Tracker::isActive()
     );
     $response->addHTML($msg->getDisplay());
 }
-
-$url_query .= '&amp;goto=tbl_tracking.php&amp;back=tbl_tracking.php';
+$sep = Url::getArgSeparator('html');
+$url_query .= $sep . 'goto=tbl_tracking.php' . $sep . 'back=tbl_tracking.php';
 $url_params['goto'] = 'tbl_tracking.php';
 $url_params['back'] = 'tbl_tracking.php';
 

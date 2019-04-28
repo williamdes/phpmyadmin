@@ -11,6 +11,7 @@
 use PhpMyAdmin\Database\Search;
 use PhpMyAdmin\Response;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
 * Gets some core libraries
@@ -32,7 +33,7 @@ if (! $GLOBALS['cfg']['UseDbSearch']) {
         __('Access denied!'), '', false, $err_url
     );
 } // end if
-$url_query .= '&amp;goto=db_search.php';
+$url_query .= Url::getArgSeparator('html') . 'goto=db_search.php';
 $url_params['goto'] = 'db_search.php';
 
 // Create a database search instance

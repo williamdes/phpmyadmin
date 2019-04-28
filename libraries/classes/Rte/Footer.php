@@ -9,6 +9,7 @@ namespace PhpMyAdmin\Rte;
 
 use PhpMyAdmin\Rte\Words;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * PhpMyAdmin\Rte\Footer class
@@ -29,6 +30,7 @@ class Footer
     private static function getLinks($docu, $priv, $name)
     {
         global $db, $table, $url_query;
+        $sep = Url::getArgSeparator('html');
 
         $icon = mb_strtolower($name) . '_add';
         $retval  = "";
@@ -39,7 +41,7 @@ class Footer
         if (Util::currentUserHasPrivilege($priv, $db, $table)) {
             $retval .= '            <a class="ajax add_anchor" ';
             $retval .= "href='db_" . mb_strtolower($name) . "s.php";
-            $retval .= "$url_query&amp;add_item=1' ";
+            $retval .= "${url_query}${sep}add_item=1' ";
             $retval .= "onclick='$.datepicker.initialized = false;'>";
             $icon = 'b_' . $icon;
             $retval .= Util::getIcon($icon);
@@ -85,6 +87,7 @@ class Footer
     public static function events()
     {
         global $db, $url_query;
+        $sep = Url::getArgSeparator('html');
 
         /**
          * For events, we show the usual 'Add event' form and also
@@ -121,7 +124,7 @@ class Footer
         $retval .= "        <div class='wrap'>\n";
         // show the toggle button
         $retval .= Util::toggleButton(
-            "sql.php$url_query&amp;goto=db_events.php" . urlencode("?db=$db"),
+            "sql.php${url_query}${sep}goto=db_events.php" . urlencode("?db=$db"),
             'sql_query',
             $options,
             'PMA_slidingMessage(data.sql_query);'

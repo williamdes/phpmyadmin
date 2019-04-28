@@ -58,11 +58,12 @@ if (empty($goto)) {
 } // end if
 
 if (! isset($err_url)) {
+    $sep = Url::getArgSeparator('html');
     $err_url = (! empty($back) ? $back : $goto)
         . '?' . Url::getCommon(array('db' => $GLOBALS['db']))
         . ((mb_strpos(' ' . $goto, 'db_') != 1
             && strlen($table) > 0)
-            ? '&amp;table=' . urlencode($table)
+            ? $sep . 'table=' . urlencode($table)
             : ''
         );
 } // end if

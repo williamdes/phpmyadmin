@@ -9,6 +9,7 @@ use PhpMyAdmin\Config\PageSettings;
 use PhpMyAdmin\Display\Export;
 use PhpMyAdmin\Relation;
 use PhpMyAdmin\Response;
+use PhpMyAdmin\Url;
 
 /**
  *
@@ -38,7 +39,8 @@ if (isset($_POST['templateAction']) && $cfgRelation['exporttemplateswork']) {
  * Gets tables information and displays top links
  */
 require_once 'libraries/tbl_common.inc.php';
-$url_query .= '&amp;goto=tbl_export.php&amp;back=tbl_export.php';
+$sep = Url::getArgSeparator('html');
+$url_query .= $sep . 'goto=tbl_export.php' . $sep . 'back=tbl_export.php';
 
 // Dump of a table
 

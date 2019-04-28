@@ -14,6 +14,7 @@ use PhpMyAdmin\Sql;
 use PhpMyAdmin\Template;
 use PhpMyAdmin\Url;
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * requirements
@@ -113,7 +114,7 @@ if (isset($_POST['submit_sql']) && ! empty($sql_query)) {
 
 $sub_part  = '_qbe';
 require 'libraries/db_common.inc.php';
-$url_query .= '&amp;goto=db_qbe.php';
+$url_query .= Url::getArgSeparator('html') . 'goto=db_qbe.php';
 $url_params['goto'] = 'db_qbe.php';
 
 list(

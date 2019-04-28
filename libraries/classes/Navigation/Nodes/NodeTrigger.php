@@ -8,6 +8,7 @@
 namespace PhpMyAdmin\Navigation\Nodes;
 
 use PhpMyAdmin\Util;
+use PhpMyAdmin\Url;
 
 /**
  * Represents a trigger node in the navigation tree
@@ -28,11 +29,12 @@ class NodeTrigger extends Node
     {
         parent::__construct($name, $type, $is_group);
         $this->icon = Util::getImage('b_triggers');
+        $sep = Url::getArgSeparator('html');
         $this->links = array(
             'text' => 'db_triggers.php?server=' . $GLOBALS['server']
-                . '&amp;db=%3$s&amp;item_name=%1$s&amp;edit_item=1',
+                . $sep . 'db=%3$s' . $sep . 'item_name=%1$s' . $sep . 'edit_item=1',
             'icon' => 'db_triggers.php?server=' . $GLOBALS['server']
-                . '&amp;db=%3$s&amp;item_name=%1$s&amp;export_item=1',
+                . $sep . 'db=%3$s' . $sep . 'item_name=%1$s' . $sep . 'export_item=1',
         );
         $this->classes = 'trigger';
     }
