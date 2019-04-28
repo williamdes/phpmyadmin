@@ -26,6 +26,11 @@ class UrlExtension extends AbstractExtension
     {
         return array(
             new TwigFunction(
+                'Url_getArgSeparator',
+                'PhpMyAdmin\Url::getArgSeparator',
+                array('is_safe' => array('html'))
+            ),
+            new TwigFunction(
                 'Url_getHiddenInputs',
                 'PhpMyAdmin\Url::getHiddenInputs',
                 array('is_safe' => array('html'))

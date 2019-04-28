@@ -77,7 +77,7 @@
                         {% for action, icon in action_icons %}
                             <td>
                                 <a href="tbl_structure.php" data-post="{{ url_query -}}
-                                    &amp;partition_maintenance=1&amp;sql_query=
+                                    {{ Url_getArgSeparator('html') }}partition_maintenance=1{{ Url_getArgSeparator('html') }}sql_query=
                                     {{- ("ALTER TABLE " ~ Util_backquote(table) ~ " " ~ action
                                         ~ " PARTITION " ~ partition.getName())|url_encode }}"
                                     id="partition_action_{{ action }}"

@@ -1,4 +1,4 @@
-<a class="truncate_table_anchor ajax" href="sql.php" data-post="{{ tbl_url_query|raw }}&amp;sql_query=
-{{- sql_query }}&amp;message_to_show={{ message_to_show }}">
+<a class="truncate_table_anchor ajax" href="sql.php" data-post="{{ tbl_url_query|raw }}{{ Url_getArgSeparator('html') }}sql_query=
+{{- sql_query }}{{ Url_getArgSeparator('html') }}message_to_show={{ message_to_show }}">
     {{ title|raw }}
 </a>

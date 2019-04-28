@@ -5,6 +5,7 @@
     or has_field %}
     {{ titles['No' ~ action]|raw }}
 {% else %}
+    {% set sep = Url_getArgSeparator('html') %}
     <a rel="samepage" class="ajax add_key print_ignore
         {%- if has_link_class %}
             add_primary_key_anchor
@@ -15,7 +16,7 @@
         {%- elseif action == 'Spatial' %}
             add_spatial_anchor
         {%- endif %}" href="tbl_structure.php" data-post="{{ url_query|raw -}}
-        &amp;add_key=1&amp;sql_query=
+        {{ sep }}add_key=1{{ sep }}sql_query=
         {{- ('ALTER TABLE ' ~
             Util_backquote(table) ~
             (is_primary ? (primary ? ' DROP PRIMARY KEY,')) ~
@@ -24,7 +25,7 @@
             '(' ~
             Util_backquote(row['Field']) ~
             ');')|url_encode -}}
-            &amp;message_to_show={{ message|format(row['Field']|e)|url_encode }}">
+            {{ sep }}message_to_show={{ message|format(row['Field']|e)|url_encode }}">
         {{ titles[action]|raw }}
     </a>
 {% endif %}

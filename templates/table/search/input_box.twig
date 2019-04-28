@@ -22,8 +22,8 @@
             {% endif %} />
         <a class="ajax browse_foreign" href="browse_foreigners.php" data-post="
             {{- Url_getCommon({'db': db, 'table': table}, '') -}}
-            &amp;field={{ column_name|url_encode }}&amp;fieldkey=
-            {{- column_index }}&amp;fromsearch=1">
+            {{ Url_getArgSeparator('html') }}field={{ column_name|url_encode }}{{ Url_getArgSeparator('html') }}fieldkey=
+            {{- column_index }}{{ Url_getArgSeparator('html') }}fromsearch=1">
             {{ titles['Browse']|replace({"'": "\\'"})|raw }}
         </a>
     {% endif %}

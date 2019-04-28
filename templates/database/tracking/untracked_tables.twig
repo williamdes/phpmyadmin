@@ -24,7 +24,7 @@
                         </label>
                     </th>
                     <td>
-                        <a href="tbl_tracking.php{{ url_query|raw }}&amp;table={{ table_name }}">
+                        <a href="tbl_tracking.php{{ url_query|raw }}{{ Url_getArgSeparator('html') }}table={{ table_name }}">
                             {{ Util_getIcon('eye', 'Track table'|trans) }}
                         </a>
                     </td>
