@@ -15,7 +15,7 @@ $relation = new Relation();
 // If request for creating the pmadb
 if (isset($_POST['create_pmadb'])) {
     if ($relation->createPmaDatabase()) {
-        $relation->fixPmaTables('phpmyadmin');
+        $relation->fixPmaTables($GLOBALS['cfg']['Server']['pmadb']);
     }
 }
 

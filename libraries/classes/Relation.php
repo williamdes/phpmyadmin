@@ -1928,18 +1928,19 @@ class Relation
     }
 
     /**
-     * Create a table named phpmyadmin to be used as configuration storage
+     * Create the pmadb database to be used as configuration storage
      *
      * @return bool
      */
     public function createPmaDatabase()
     {
-        $GLOBALS['dbi']->tryQuery("CREATE DATABASE IF NOT EXISTS `phpmyadmin`");
+        $dbName = $GLOBALS['cfg']['Server']['pmadb'];
+        $GLOBALS['dbi']->tryQuery("CREATE DATABASE IF NOT EXISTS `$dbName`");
         if ($error = $GLOBALS['dbi']->getError()) {
             if ($GLOBALS['errno'] == 1044) {
                 $GLOBALS['message'] =    __(
                     'You do not have necessary privileges to create a database named'
-                    . ' \'phpmyadmin\'. You may go to \'Operations\' tab of any'
+                    . ' \'' . $dbName . '\'. You may go to \'Operations\' tab of any'
                     . ' database to set up the phpMyAdmin configuration storage there.'
                 );
             } else {
@@ -2053,7 +2054,7 @@ class Relation
                 $url_query .= '&amp;goto=db_operations.php&amp;create_pmadb=1';
                 $message = Message::notice(
                     __(
-                        '%sCreate%s a database named \'phpmyadmin\' and setup '
+                        '%sCreate%s a database named \'' . $GLOBALS['cfg']['Server']['pmadb'] . '\' and setup '
                         . 'the phpMyAdmin configuration storage there.'
                     )
                 );
